@@ -1,0 +1,20 @@
+import { solveLinearEquation } from "./solveLinearEquation.js";
+
+export const solveQuadraticEquation = async (a, b, c) => {
+  if (a === 0) {
+    return solveLinearEquation(b, c);
+  } else {
+    const delta = b ** 2 - 4 * a * c;
+
+    if (delta < 0) {
+      throw new Error("The equation has no real solution");
+    } else if (delta === 0) {
+      let x = -b / (2 * a);
+      return [x.toFixed(2)];
+    } else {
+      let x1 = (-b + Math.sqrt(delta)) / (2 * a);
+      let x2 = (-b - Math.sqrt(delta)) / (2 * a);
+      return [x1.toFixed(2), x2.toFixed(2)];
+    }
+  }
+};
